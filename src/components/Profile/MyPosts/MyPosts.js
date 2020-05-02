@@ -12,15 +12,13 @@ const MyPosts = () => {
             <div>
                 <textarea></textarea>
                 <button>Add post</button>
-                <button>Remove</button>
-                <Post />
-                <Post />
-                <Post />
-                <Post />
-                <Post />
-
 
             </div>
+            <div className={classes.posts}>
+                <Post message={"heya! how's it going ?"} />
+                <Post message={"Fine! how about you bro?"} />
+            </div>
+
         </div>
 
 
