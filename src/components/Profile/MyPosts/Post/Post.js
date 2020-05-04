@@ -9,7 +9,7 @@ const Post = (props) => {
             <img src={'https://icons.iconarchive.com/icons/diversity-avatars/avatars/256/batman-icon.png'}/>
             {props.message};
             <div>
-                <span>like</span>
+                <span>like</span> {props.likesCount}
             </div>
         </div>
 
