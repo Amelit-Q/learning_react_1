@@ -9,15 +9,18 @@ import classes from "./App.css"
 import {BrowserRouter, Route} from "react-router-dom";
 
 
-const App = () => {
+const App = (props) => {
+
+
     return (
         <BrowserRouter>
             <div className={'app-wrapper'}>
                 <Header/>
                 <NavBar/>
                 <div className={'app-wrapper-content'}>
-                    <Route path={'/messages'} component={Dialogues}/>
-                    <Route path={'/profile'} component={Profile}/>
+                    <Route path={'/messages'} render={() =>
+                        <Dialogues conversationData={props.conversationData} messagesData={props.messagesData}/>}/>
+                    <Route path={'/profile'} render={() => <Profile posts={props.posts}/>}/>
                 </div>
 
             </div>

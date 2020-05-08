@@ -1,11 +1,17 @@
 import React from "react";
 import classes from "./Dialogues.module.css"
-import dialoguesElements from "./ConversationData/DialoguesElementsData";
-import messagesElements from "./ConversationData/MessagesElementsData";
+import ConversationItem from "./ConversationItem/ConversationItem";
+import Messages from "./Message/Messages";
 
 
 const Dialogues = (props) => {
 
+
+    let dialoguesElements =
+        props.conversationData.map(c => <ConversationItem name={c.name} id={c.id}/>);
+
+    let messagesElements =
+        props.messagesData.map(m => <Messages text={m.message}/>)
 
     return (
         <div className={classes.dialogues}>
