@@ -8,10 +8,10 @@ const Dialogues = (props) => {
 
 
     let dialoguesElements =
-        props.conversationData.map(c => <ConversationItem name={c.name} id={c.id}/>);
+        props.state.conversationData.map(c => <ConversationItem name={c.name} id={c.id}/>);
 
     let messagesElements =
-        props.messagesData.map(m => <Messages text={m.message}/>)
+        props.state.messagesData.map(m => <Messages text={m.message}/>)
 
     return (
         <div className={classes.dialogues}>
