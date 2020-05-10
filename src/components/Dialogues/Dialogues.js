@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./Dialogues.module.css"
-import ConversationItem from "./ConversationItem/ConversationItem";
-import Messages from "./Message/Messages";
+import ConversationItem from "./ConversationItem/ConversationItem"
+import Messages from "./Message/Messages"
 
 
 const Dialogues = (props) => {
@@ -26,4 +26,4 @@ const Dialogues = (props) => {
     )
 }
 
-export default Dialogues;
+export default Dialogues

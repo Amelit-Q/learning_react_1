@@ -1,6 +1,7 @@
 .dialogues {
     display: grid;
     grid-template-columns: 4fr 10fr;
+    grid-column-gap: 20px;
 }
 
 .dialoguesItems {
@@ -8,7 +9,14 @@
 }
 
 .dialoguesItems .active {
-    color: maroon;
+    color: whitesmoke;
+}
+
+.conversation img {
+    width: 60px;
+    height: 60px;
+    border-radius: 20px;
+
 }
 
 .conversation {
