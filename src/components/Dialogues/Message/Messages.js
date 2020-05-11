@@ -10,13 +10,14 @@ const Messages = (props) => {
         alert(text)
     }
 
+
     return (
         <div>
             <div className={classes.messages}>
                 {props.text}
             </div>
             <div>
-                <textarea ref={newMessageElement}></textarea>
+                <textarea />
             </div>
             <div>
                 <button onClick={addPost}>Add post</button>
