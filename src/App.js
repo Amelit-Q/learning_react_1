@@ -11,18 +11,18 @@ const App = (props) => {
 
 
     return (
-            <div className={'app-wrapper'}>
-                <Header/>
-                <NavBar/>
-                <div className={'app-wrapper-content'}>
-                    <Route path={'/messages'} render={() =>
-                        <Dialogues state={props.state.dialoguesPage}/>}/>
-                    <Route path={'/profile'} render={() =>
-                        <Profile profilePage={props.state.profilePage}
-                                 dispatch={props.dispatch}/>}/>
-                </div>
-
+        <div className={'app-wrapper'}>
+            <Header/>
+            <NavBar/>
+            <div className={'app-wrapper-content'}>
+                <Route path={'/messages'} render={() =>
+                    <Dialogues store={props.store}/>}/>
+                <Route path={'/profile'} render={() =>
+                    <Profile profilePage={props.state.profilePage}
+                             dispatch={props.dispatch}/>}/>
             </div>
+
+        </div>
     );
 }
 
