@@ -1,3 +1,6 @@
+import profileReducer from "./profile-reducer";
+import dialoguesReducer from "./dialogues-reducer";
+
 let store = {
     _state: {
         profilePage: {
@@ -53,49 +56,17 @@ let store = {
         this._callSubscriber(this._state)
     },
     dispatch(action) { // { type: 'ADD-POST' }
-        if (action.type === 'ADD-POST') {
-            let newPost = {
-                id: 5,
-                post: this._state.profilePage.newPostText,
-                likesCount: 0,
-            }
-            this._state.profilePage.posts.push(newPost)
-            this._state.profilePage.newPostText = ''
-            this._callSubscriber(this._state)
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.profilePage.newPostText = action.newText
-            this._callSubscriber(this._state)
-        } else if (action.type === 'NEW-MESSAGE-BODY') {
-            this._state.dialoguesPage.newMessageBody = action.body
-            this._callSubscriber(this._state)
-        } else if (action.type === 'SEND-MESSAGE') {
-            let body = this._state.dialoguesPage.newMessageBody
-            this._state.dialoguesPage.newMessageBody = ''
-            this._state.dialoguesPage.messagesData.push({id: 5, message: body})
-            this._callSubscriber(this._state)
-        }
+
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+
+        this._state.dialoguesPage = dialoguesReducer(this._state.dialoguesPage, action)
+
+        this._callSubscriber(this._state)
+
     }
 }
 
-export const addPostActionCreator = () => {
-    return {
-        type: 'ADD-POST'
-    }
-}
 
-export const updateNewPostTextActionCreator = (text) => {
-    return {
-        type: 'UPDATE-NEW-POST-TEXT', newText: text
-    }
-}
-
-export const updateNewMessageBodyActionCreator = (body) => {
-    return {type: 'NEW-MESSAGE-BODY', body: body}
-}
-
-export const sendMessageActionCreator = () => {
-    return {type: 'SEND-MESSAGE'}
-}
 
 window.store = store
 export default store
