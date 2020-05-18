@@ -11,7 +11,7 @@ let initialState = {
         {id: 3, name: "Scott"},
         {id: 4, name: "Steve"},
     ],
-    newMessageBody: " "
+    newMessageBody: ""
 }
 
 
