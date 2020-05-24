@@ -16,31 +16,11 @@ const profileReducer = (state = initialState, action) => {
         likesCount: 0,
     }
 
-    switch (action.type) {
-        case 'ADD-POST':
-            return {
-                ...state,
-                newPostText: '',
-                posts: [...state.posts, newPost],
-
-            }
-        case 'UPDATE-NEW-POST-TEXT':
-            return {
-                ...state,
-                newPostText: action.newText
-            }
-
-        default:
-            return state
-
-    }
-
-}
-
-/*    if (action.type === 'ADD-POST') {
+    if (action.type === 'ADD-POST') {
         return {
             ...state,
-            posts: [...state, newPost]
+            newPostText: '',
+            posts: [...state.posts, newPost]
         }
 
     } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
@@ -51,7 +31,10 @@ const profileReducer = (state = initialState, action) => {
     }
 
     return state
-}*/
+
+
+}
+
 
 export const addPostActionCreator = () => {
     return {

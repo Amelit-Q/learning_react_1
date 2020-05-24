@@ -17,22 +17,22 @@ let initialState = {
 
 const dialoguesReducer = (state = initialState, action) => {
 
-    switch (action.type) {
-        case 'NEW-MESSAGE-BODY':
-            return {
-                ...state,
-                newMessageBody: action.body
-            }
-        case 'SEND-MESSAGE':
-            let body = state.newMessageBody
-            return {
-                ...state,
-                newMessageBody: '',
-                messagesData: [...state.messagesData, {message: body}],
-            }
-        default:
-            return state
+    if (action.type === 'NEW-MESSAGE-BODY') {
+        return {
+            ...state,
+            newMessageBody: action.body
+        }
+    } else if (action.type === 'SEND-MESSAGE') {
+        let body = state.newMessageBody
+        return {
+            ...state,
+            newMessageBody: '',
+            messagesData: [...state.messagesData, {message: body}]
+        }
+
     }
+    return state
+
 
 }
 

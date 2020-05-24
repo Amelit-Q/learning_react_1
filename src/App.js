@@ -4,7 +4,8 @@ import Header from "./components/Header/Header";
 import NavBar from "./components/NavBar/NavBar";
 import Profile from "./components/Profile/Profile";
 import {Route} from "react-router-dom";
-import DialoguesContainer from "./components/Dialogues/DialoguesContainer";
+import DialoguesStateful from "./components/Dialogues/DialoguesStateful";
+import UsersStateful from "./components/Users/UsersStateful";
 
 
 const App = (props) => {
@@ -15,9 +16,11 @@ const App = (props) => {
             <NavBar/>
             <div className={'app-wrapper-content'}>
                 <Route path={'/messages'} render={() =>
-                    <DialoguesContainer store={props.store}/>}/>
+                    <DialoguesStateful store={props.store}/>}/>
                 <Route path={'/profile'} render={() =>
                     <Profile store={props.store}/>}/>
+                <Route path={'/users'} render={() =>
+                    <UsersStateful store={props.store}/>} />
             </div>
 
         </div>

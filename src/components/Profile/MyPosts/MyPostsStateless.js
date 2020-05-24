@@ -4,7 +4,7 @@ import classes from "./MyPosts.module.css"
 import Post from "./Post/Post";
 
 
-const MyPosts = (props) => {
+const MyPostsStateless = (props) => {
 
     let postElements =
         props.posts.map(p => <Post message={p.post} likesCount={p.likesCount} key={p.id}/>)
@@ -25,7 +25,8 @@ const MyPosts = (props) => {
             <h2>My posts</h2>
             <div>
                 <div>
-                    <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}/>
+                    <textarea onChange={onPostChange} ref={newPostElement}
+                              value={props.newPostText}/>
                 </div>
                 <div>
                     <button onClick={onAddPost}>Add post</button>
@@ -42,4 +43,4 @@ const MyPosts = (props) => {
     )
 }
 
-export default MyPosts
+export default MyPostsStateless

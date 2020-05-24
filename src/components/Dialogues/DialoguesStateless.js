@@ -4,7 +4,7 @@ import ConversationItem from "./ConversationItem/ConversationItem"
 import Messages from "./Message/Messages"
 
 
-const Dialogues = (props) => {
+const DialoguesStateless = (props) => {
 
     let state = props.dialoguesPage
     let dialoguesElements = state.conversationData.map(c => <ConversationItem name={c.name} id={c.id} key={c.id}/>);
@@ -41,4 +41,4 @@ const Dialogues = (props) => {
     )
 }
 
-export default Dialogues
+export default DialoguesStateless

@@ -1,6 +1,6 @@
 import React from "react";
 import {sendMessageActionCreator, updateNewMessageBodyActionCreator} from "../../redux/dialogues-reducer";
-import Dialogues from "./Dialogues";
+import DialoguesStateless from "./DialoguesStateless";
 import {connect} from "react-redux";
 
 let mapStateToProps = (state) => {
@@ -21,8 +21,8 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
 
-const DialoguesContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogues)
+const DialoguesStateful = connect(mapStateToProps, mapDispatchToProps)(DialoguesStateless)
 
-export default DialoguesContainer
+export default DialoguesStateful
 
 
