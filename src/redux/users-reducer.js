@@ -3,6 +3,7 @@ let initialState = {
     pageSize: 5,
     totalUsersCount: 0,
     currentPage: 1,
+    isFetching: false,
 }
 
 
@@ -30,11 +31,19 @@ const usersReducer = (state = initialState, action) => {
             })
         }
     } else if (action.type === 'SET_USERS') {
+
         return { ...state, usersData: action.users }
+
     } else if (action.type === 'SET_CURRENT_PAGE') {
+
         return { ...state, currentPage: action.currentPage }
+
     } else if (action.type === 'SET_TOTAL_USERS_COUNT') {
+
         return { ...state, totalUsersCount: action.count }
+
+    } else if (action.type === 'TOGGLE_IS_FETCHING') {
+        return { ...state, isFetching: action.isFetching }
     }
 
     return state
@@ -58,6 +67,10 @@ export const setCurrentPageActionCreator = (currentPage) => {
 
 export const setTotalUsersCountActionCreator = (totalUsersCount) => {
     return { type: 'SET_TOTAL_USERS_COUNT', count: totalUsersCount }
+}
+
+export const toggleIsFetchingActionCreator = (isFetching) => {
+    return { type: 'TOGGLE_IS_FETCHING', isFetching }
 }
 
 export default usersReducer
