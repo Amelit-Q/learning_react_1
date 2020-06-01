@@ -1,11 +1,12 @@
 let initialState = {
     posts: [
-        {id: 1, post: "Heya! how's it going ?", likesCount: 2},
-        {id: 2, post: "Fine! how about you bro?", likesCount: 23},
-        {id: 3, post: "What the hell are you doing here?", likesCount: 228},
-        {id: 4, post: "Hey dickhead!", likesCount: 322},
+        { id: 1, post: "Heya! how's it going ?", likesCount: 2 },
+        { id: 2, post: "Fine! how about you bro?", likesCount: 23 },
+        { id: 3, post: "What the hell are you doing here?", likesCount: 228 },
+        { id: 4, post: "Hey dickhead!", likesCount: 322 },
     ],
-    newPostText: "ADHD"
+    newPostText: "ADHD",
+    profile: null
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -28,6 +29,11 @@ const profileReducer = (state = initialState, action) => {
             ...state,
             newPostText: action.newText,
         }
+    } else if (action.type === 'SET-USER-PROFILE') {
+        return {
+            ...state,
+            profile: action.profile,
+        }
     }
 
     return state
@@ -45,6 +51,12 @@ export const addPostActionCreator = () => {
 export const updateNewPostTextActionCreator = (text) => {
     return {
         type: 'UPDATE-NEW-POST-TEXT', newText: text
+    }
+}
+
+export const setUserProfile = (profile) => {
+    return {
+        type: 'SET-USER-PROFILE', profile
     }
 }
 

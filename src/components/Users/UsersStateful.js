@@ -1,12 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import {
-    followActionCreator,
-    setUsersActionCreator,
-    unFollowActionCreator,
-    setCurrentPageActionCreator,
-    setTotalUsersCountActionCreator,
-    toggleIsFetchingActionCreator,
+    follow,
+    unFollow,
+    setUsers,
+    setCurrentPage,
+    setTotalUsersCount,
+    toggleIsFetching,
 
 } from "../../redux/users-reducer";
 import * as axios from "axios"
@@ -16,11 +16,12 @@ class UsersStateless extends React.Component {
 
     componentDidMount() {
         this.props.toggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage} &count=${this.props.pageSize}`).then(response => {
-            this.props.toggleIsFetching(false)
-            this.props.setUsers(response.data.items)
-            this.props.setTotalUsersCount(response.data.totalCount)
-        })
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage} &count=${this.props.pageSize}`)
+            .then(response => {
+                this.props.toggleIsFetching(false)
+                this.props.setUsers(response.data.items)
+                this.props.setTotalUsersCount(response.data.totalCount)
+            })
     }
 
     onPageChanged = (pageNumber) => {
@@ -59,27 +60,11 @@ let mapStateToProps = (state) => {
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        follow: (userID) => {
-            dispatch(followActionCreator(userID))
-        },
-        unFollow: (userID) => {
-            dispatch(unFollowActionCreator(userID))
-        },
-        setUsers: (users) => {
-            dispatch(setUsersActionCreator(users))
-        },
-        setCurrentPage: (pageNumber) => {
-            dispatch(setCurrentPageActionCreator(pageNumber))
-        },
-        setTotalUsersCount: (totalCount) => {
-            dispatch(setTotalUsersCountActionCreator)(totalCount)
-        },
-        toggleIsFetching: (isFetching) => {
-            dispatch(toggleIsFetchingActionCreator(isFetching))
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UsersStateless)
+export default connect(mapStateToProps, {
+    follow,
+    unFollow,
+    setUsers,
+    setCurrentPage,
+    setTotalUsersCount,
+    toggleIsFetching
+})(UsersStateless)
