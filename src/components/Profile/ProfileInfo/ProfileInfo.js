@@ -10,10 +10,10 @@ const ProfileInfo = (props) => {
     return (
         <div>
             <div>
-                <img src={'https://images.wallpaperscraft.ru/image/asfalt_luzhi_otrazhenie_167881_1280x720.jpg'} />
+                <img src={'https://images.wallpaperscraft.ru/image/asfalt_luzhi_otrazhenie_167881_1280x720.jpg'}/>
             </div>
             <div className={classes.description}>
-                <img src={props.profile.photo.large} />
+                <img src={props.profile.photos.large}/>
             </div>
         </div>
     )
