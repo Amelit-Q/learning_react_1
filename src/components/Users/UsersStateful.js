@@ -49,7 +49,7 @@ class UsersStateless extends React.Component {
     }
 }
 
-let mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
 
     return {
         usersData: state.usersPage.usersData,
