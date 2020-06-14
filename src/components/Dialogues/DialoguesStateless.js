@@ -2,13 +2,14 @@ import React from "react";
 import classes from "./Dialogues.module.css"
 import ConversationItem from "./ConversationItem/ConversationItem"
 import Messages from "./Message/Messages"
+import { Redirect } from "react-router-dom";
 
 
 const DialoguesStateless = (props) => {
 
     let state = props.dialoguesPage
-    let dialoguesElements = state.conversationData.map(c => <ConversationItem name={c.name} id={c.id} key={c.id}/>);
-    let messagesElements = state.messagesData.map(m => <Messages text={m.message} key={m.id}/>)
+    let dialoguesElements = state.conversationData.map(c => <ConversationItem name={c.name} id={c.id} key={c.id} />);
+    let messagesElements = state.messagesData.map(m => <Messages text={m.message} key={m.id} />)
     let newMessageBody = state.newMessageBody
 
     let onSendMessageClick = () => {
@@ -20,6 +21,7 @@ const DialoguesStateless = (props) => {
         props.updateNewMessageBody(body)
     }
 
+
     return (
         <div className={classes.dialogues}>
             <div className={classes.dialoguesItems}>
@@ -30,8 +32,8 @@ const DialoguesStateless = (props) => {
                 <div>{messagesElements}</div>
                 <div>
                     <div><textarea value={newMessageBody}
-                                   onChange={onNewMessageChange}
-                                   placeholder='Enter your message here'></textarea></div>
+                        onChange={onNewMessageChange}
+                        placeholder='Enter your message here'></textarea></div>
                     <div>
                         <button onClick={onSendMessageClick}>send</button>
                     </div>

@@ -6,6 +6,7 @@ import { Route } from "react-router-dom";
 import DialoguesStateful from "./components/Dialogues/DialoguesStateful";
 import UsersStateful from "./components/Users/UsersStateful";
 import ProfileStateful from "./components/Profile/ProfileStateful";
+import Login from "./components/Login/Login";
 
 
 const App = (props) => {
@@ -21,6 +22,8 @@ const App = (props) => {
                     <ProfileStateful />} />
                 <Route path='/users' render={() =>
                     <UsersStateful />} />
+                <Route path='/login' render={() =>
+                    <Login />} />
             </div>
 
         </div>

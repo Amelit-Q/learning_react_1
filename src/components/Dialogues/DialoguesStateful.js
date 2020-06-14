@@ -1,11 +1,14 @@
 import React from "react";
-import {sendMessageActionCreator, updateNewMessageBodyActionCreator} from "../../redux/dialogues-reducer";
+import { sendMessageActionCreator, updateNewMessageBodyActionCreator } from "../../redux/dialogues-reducer";
+import { withAuthRedirect } from './../../HOC/withAuthRedirect'
 import DialoguesStateless from "./DialoguesStateless";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 let mapStateToProps = (state) => {
     return {
-        dialoguesPage: state.dialoguesPage
+        dialoguesPage: state.dialoguesPage,
+        isAuth: state.auth.isAuth
     }
 }
 
@@ -21,7 +24,9 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
 
-const DialoguesStateful = connect(mapStateToProps, mapDispatchToProps)(DialoguesStateless)
+let AuthRedirectComponent = withAuthRedirect(DialoguesStateless)
+
+const DialoguesStateful = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent)
 
 export default DialoguesStateful
 
