@@ -2,10 +2,13 @@ import React from "react";
 import Profile from './Profile'
 import { connect } from "react-redux";
 import {
-    getUserProfile
+    getUserProfile,
+    getStatus,
+    updateStatus,
+
 } from "../../redux/profile-reducer";
-import { withAuthRedirect } from './../../HOC/withAuthRedirect'
-import { withRouter, Redirect } from "react-router-dom";
+import { withRouter } from "react-router-dom";
+import { compose } from "redux";
 
 
 class ProfileStateful extends React.Component {
@@ -17,27 +20,31 @@ class ProfileStateful extends React.Component {
             userId = 2
         }
         this.props.getUserProfile(userId)
+        this.props.getStatus(userId)
 
     }
 
 
 
-    render(props) {
+    render() {
 
         return (
-            <Profile {...this.props} profile={this.props.profile} />
+            <Profile {...this.props} profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateStatus} />
         )
     }
 
 }
 
-let AuthRedirectComponent = withAuthRedirect(ProfileStateful)
 
 let mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
     isAuth: state.auth.isAuth,
+    status: state.profilePage.status
 })
 
-let WithUrlDataStatefulComponent = withRouter(AuthRedirectComponent)
 
-export default connect(mapStateToProps, { getUserProfile })(WithUrlDataStatefulComponent)
+export default compose(
+    connect(mapStateToProps, { getUserProfile, getStatus, updateStatus }),
+    withRouter,
+    //withAuthRedirect,
+)(ProfileStateful)

@@ -1,4 +1,4 @@
-import { userAPI } from "../api/api"
+import { userAPI, profileAPI } from "../api/api"
 
 let initialState = {
     posts: [
@@ -8,7 +8,8 @@ let initialState = {
         { id: 4, post: "Hey dickhead!", likesCount: 322 },
     ],
     newPostText: "ADHD",
-    profile: null
+    profile: null,
+    status: "",
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -36,6 +37,11 @@ const profileReducer = (state = initialState, action) => {
             ...state,
             profile: action.profile,
         }
+    } else if (action.type === 'SET_STATUS') {
+        return {
+            ...state,
+            status: action.status
+        }
     }
 
     return state
@@ -56,9 +62,15 @@ export const updateNewPostTextActionCreator = (text) => {
     }
 }
 
-const setUserProfile = (profile) => {
+export const setUserProfile = (profile) => {
     return {
         type: 'SET-USER-PROFILE', profile
+    }
+}
+
+export const setStatus = (status) => {
+    return {
+        type: 'SET_STATUS', status
     }
 }
 
@@ -68,6 +80,23 @@ export const getUserProfile = (userId) => (dispatch) => {
             dispatch(setUserProfile(response.data))
         })
 }
+
+export const getStatus = (userId) => (dispatch) => {
+    profileAPI.getStatus(userId)
+        .then(response => {
+            dispatch(setStatus(response.data))
+        })
+}
+
+export const updateStatus = (status) => (dispatch) => {
+    userAPI.updateStatus(status)
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(setStatus(status))
+            }
+        })
+}
+
 
 
 

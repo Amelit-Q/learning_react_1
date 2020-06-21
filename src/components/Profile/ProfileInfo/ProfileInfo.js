@@ -1,5 +1,7 @@
 import React from "react";
 import classes from "./ProfileInfo.module.css"
+import ProfileStatus from "./ProfileStatus"
+
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -9,13 +11,11 @@ const ProfileInfo = (props) => {
     return (
 
         <div>
-            <div>
-                <img
-                    src={'https://images.wallpaperscraft.ru/image/asfalt_luzhi_otrazhenie_167881_1280x720.jpg'} />
-            </div>
+
             <div className={classes.description}>
 
                 <img src={props.profile.photos.large} />
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
             </div>
         </div>
     )

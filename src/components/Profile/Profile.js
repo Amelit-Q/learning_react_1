@@ -5,7 +5,7 @@ import MyPostsStateful from "./MyPosts/MyPostsStateful";
 const Profile = (props) => {
     return (
         <div>
-            <ProfileInfo profile={props.profile} />
+            <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus} />
             <MyPostsStateful />
         </div>
 

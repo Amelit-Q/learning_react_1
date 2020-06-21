@@ -3,7 +3,7 @@ import { sendMessageActionCreator, updateNewMessageBodyActionCreator } from "../
 import { withAuthRedirect } from './../../HOC/withAuthRedirect'
 import DialoguesStateless from "./DialoguesStateless";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { compose } from "redux";
 
 let mapStateToProps = (state) => {
     return {
@@ -24,10 +24,11 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
 
-let AuthRedirectComponent = withAuthRedirect(DialoguesStateless)
 
-const DialoguesStateful = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent)
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    withAuthRedirect
+)(DialoguesStateless)
 
-export default DialoguesStateful
 
 

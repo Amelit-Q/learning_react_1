@@ -8,9 +8,11 @@ import {
     getUsers,
 } from "../../redux/users-reducer";
 import Users from './Users'
+import { compose } from "redux";
+import { withAuthRedirect } from "../../HOC/withAuthRedirect";
 
 
-class UsersStateless extends React.Component {
+class UsersStateful extends React.Component {
 
     componentDidMount() {
 
@@ -50,10 +52,13 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {
-    follow,
-    unFollow,
-    setCurrentPage,
-    toggleFollowingProgress,
-    getUsers,
-})(UsersStateless)
+export default compose(
+    withAuthRedirect,
+    connect(mapStateToProps, {
+        follow,
+        unFollow,
+        setCurrentPage,
+        toggleFollowingProgress,
+        getUsers,
+    })
+)(UsersStateful)
