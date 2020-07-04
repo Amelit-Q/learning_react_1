@@ -7,31 +7,27 @@ let initialState = {
         { id: 3, post: "What the hell are you doing here?", likesCount: 228 },
         { id: 4, post: "Hey dickhead!", likesCount: 322 },
     ],
-    newPostText: "ADHD",
     profile: null,
     status: "",
 }
 
 const profileReducer = (state = initialState, action) => {
 
-    let newPost = {
-        id: 5,
-        post: state.newPostText,
-        likesCount: 0,
-    }
 
     if (action.type === 'ADD-POST') {
+
+        let newPost = {
+            id: 5,
+            post: action.newPostElement,
+            likesCount: 0,
+        }
+
         return {
             ...state,
             newPostText: '',
             posts: [...state.posts, newPost]
         }
 
-    } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-        return {
-            ...state,
-            newPostText: action.newText,
-        }
     } else if (action.type === 'SET-USER-PROFILE') {
         return {
             ...state,
@@ -50,15 +46,9 @@ const profileReducer = (state = initialState, action) => {
 }
 
 
-export const addPostActionCreator = () => {
+export const addPostActionCreator = (newPostElement) => {
     return {
-        type: 'ADD-POST'
-    }
-}
-
-export const updateNewPostTextActionCreator = (text) => {
-    return {
-        type: 'UPDATE-NEW-POST-TEXT', newText: text
+        type: 'ADD-POST', newPostElement
     }
 }
 
