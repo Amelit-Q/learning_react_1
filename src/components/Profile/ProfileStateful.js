@@ -9,6 +9,7 @@ import {
 } from "../../redux/profile-reducer";
 import { withRouter } from "react-router-dom";
 import { compose } from "redux";
+import { withAuthRedirect } from "../../HOC/withAuthRedirect";
 
 
 class ProfileStateful extends React.Component {
@@ -18,6 +19,9 @@ class ProfileStateful extends React.Component {
         let userId = this.props.match.params.userId
         if (!userId) {
             userId = this.props.authorizedUserId
+            if (!userId) {
+                this.props.history.push('/login')
+            }
         }
         this.props.getUserProfile(userId)
         this.props.getStatus(userId)
@@ -50,5 +54,5 @@ let mapStateToProps = (state) => ({
 export default compose(
     connect(mapStateToProps, { getUserProfile, getStatus, updateStatus }),
     withRouter,
-    //withAuthRedirect,
+    withAuthRedirect,
 )(ProfileStateful)

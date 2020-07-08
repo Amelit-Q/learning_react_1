@@ -23,7 +23,7 @@ let Users = (props) => {
             })}
         </div>
         {
-            props.usersData.map(ud => <div key={ud.id}>
+            props.users.map(ud => <div key={ud.id}>
                 <span>
                     <div>
                         <NavLink to={'/profile' + ud.id}>
@@ -33,9 +33,10 @@ let Users = (props) => {
                     <div>
                         {ud.isFollowing
 
-                            ? <button disabled={props.toggleFollowingProgress.some(id => id === ud.id)} onClick={() => { props.unFollow(ud.id) }
+                            ? <button disabled={props.toggleFollowingProgress.some(id => id === ud.id)}
+                                onClick={() => { props.unFollow(ud.id) }
 
-                            }>Unfollow</button>
+                                }>Unfollow</button>
 
                             : <button disabled={props.toggleFollowingProgress.some(id => id === ud.id)}
                                 onClick={() => { props.Follow(ud.id) }}

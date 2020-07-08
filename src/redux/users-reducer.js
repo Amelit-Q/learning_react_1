@@ -1,7 +1,7 @@
 import { userAPI } from "../api/api"
 
 let initialState = {
-    usersData: [],
+    users: [],
     pageSize: 5,
     totalUsersCount: 0,
     currentPage: 1,
@@ -15,7 +15,7 @@ const usersReducer = (state = initialState, action) => {
     if (action.type === 'FOLLOW') {
         return {
             ...state,
-            usersData: state.usersData.map(ud => {
+            users: state.users.map(ud => {
                 if (ud.id === action.userId) {
                     return { ...ud, isFollowing: true }
                 }
@@ -26,7 +26,7 @@ const usersReducer = (state = initialState, action) => {
     } else if (action.type === 'UNFOLLOW') {
         return {
             ...state,
-            usersData: state.usersData.map(ud => {
+            users: state.users.map(ud => {
                 if (ud.id === action.userId) {
                     return { ...ud, isFollowing: false }
                 }
@@ -35,7 +35,7 @@ const usersReducer = (state = initialState, action) => {
         }
     } else if (action.type === 'SET_USERS') {
 
-        return { ...state, usersData: action.users }
+        return { ...state, users: action.users }
 
     } else if (action.type === 'SET_CURRENT_PAGE') {
 
@@ -89,10 +89,11 @@ export const toggleFollowingProgress = (isFetching, userId) => {
     return { type: 'TOGGLE_IS_FOLLOWING_IN_PROGRESS', isFetching, userId }
 }
 
-export const getUsers = (currentPage, pageSize) => {
+export const users = (currentPage, pageSize) => {
 
     return (dispatch) => {
         dispatch(toggleIsFetching(true))
+        dispatch(setCurrentPage(currentPage))
         userAPI.getUsers(currentPage, pageSize).then(data => {
             dispatch(toggleIsFetching(false))
             dispatch(setUsers(data.items))

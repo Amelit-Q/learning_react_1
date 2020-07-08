@@ -5,8 +5,15 @@ import {
     unFollow,
     setCurrentPage,
     toggleFollowingProgress,
-    getUsers,
 } from "../../redux/users-reducer";
+import {
+    getUsers,
+    getPageSize,
+    getTotalUsersCount,
+    getCurrentPage,
+    getIsFetching,
+    getToggleFollowingProgress,
+} from '../../redux/user-selector'
 import Users from './Users'
 import { compose } from "redux";
 import { withAuthRedirect } from "../../HOC/withAuthRedirect";
@@ -43,17 +50,17 @@ class UsersStateful extends React.Component {
 const mapStateToProps = (state) => {
 
     return {
-        usersData: state.usersPage.usersData,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        toggleFollowingProgress: state.usersPage.toggleFollowingProgress,
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        toggleFollowingProgress: getToggleFollowingProgress(state),
     }
 }
 
+
 export default compose(
-    withAuthRedirect,
     connect(mapStateToProps, {
         follow,
         unFollow,
