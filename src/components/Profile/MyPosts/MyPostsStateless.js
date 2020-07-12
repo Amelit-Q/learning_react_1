@@ -27,13 +27,16 @@ const AddMessageForm = (props) => {
 
 const AddPostForRedux = reduxForm({ form: 'ProfileAddPostForm' })(AddMessageForm)
 
-const MyPostsStateless = (props) => {
+const MyPostsStateless = React.memo(props => {
+
+
+
 
     let postElements =
-        props.posts.map(p => <Post message={p.post} likesCount={p.likesCount} key={p.id} />)
+        this.props.posts.map(p => <Post message={p.post} likesCount={p.likesCount} key={p.id} />)
 
     let onAddPost = (values) => {
-        props.addPost(values.newPostElement)
+        this.props.addPost(values.newPostElement)
     }
 
     return (
@@ -50,8 +53,8 @@ const MyPostsStateless = (props) => {
 
 
     )
-}
 
+})
 
 
 export default MyPostsStateless
