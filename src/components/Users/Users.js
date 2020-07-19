@@ -1,29 +1,20 @@
 import React from 'react'
 import classes from './Users.module.css'
 import { NavLink } from 'react-router-dom'
+import Paginator from './Paginator'
 
 
-let Users = (props) => {
-
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
-
-    let pages = []
-
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i)
-    }
+let Users = ({ currentPage, toggleFollowingProgress, unFollow, Follow, users, onPageChanged, totalUsersCount, pageSize }) => {
 
     return <div>
-        <div>
-            {pages.map(p => {
-                return <span className={props.currentPage === p && classes.selectedPage}
-                    onClick={(e) => {
-                        props.onPageChanged(p)
-                    }}>{p}</span>
-            })}
-        </div>
+
+        <Paginator currentPage={currentPage}
+            onPageChanged={onPageChanged}
+            totalUsersCount={totalUsersCount}
+            pageSize={pageSize} />
+
         {
-            props.users.map(ud => <div key={ud.id}>
+            users.map(ud => <div key={ud.id}>
                 <span>
                     <div>
                         <NavLink to={'/profile' + ud.id}>
@@ -33,13 +24,13 @@ let Users = (props) => {
                     <div>
                         {ud.isFollowing
 
-                            ? <button disabled={props.toggleFollowingProgress.some(id => id === ud.id)}
-                                onClick={() => { props.unFollow(ud.id) }
+                            ? <button disabled={toggleFollowingProgress.some(id => id === ud.id)}
+                                onClick={() => { unFollow(ud.id) }
 
                                 }>Unfollow</button>
 
-                            : <button disabled={props.toggleFollowingProgress.some(id => id === ud.id)}
-                                onClick={() => { props.Follow(ud.id) }}
+                            : <button disabled={toggleFollowingProgress.some(id => id === ud.id)}
+                                onClick={() => { Follow(ud.id) }}
                             >Follow</button>}
 
                     </div>

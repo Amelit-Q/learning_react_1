@@ -6,9 +6,9 @@ import { connect } from "react-redux"
 import { login } from "../../redux/auth-reducer"
 import style from './../Common/ControlForms/ControlForms.module.css'
 
-const LoginForm = (props) => {
+const LoginForm = ({ handleSubmit, error }) => {
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <div>
                 <Field placeholder={'Email'}
                     name={'email'}
@@ -25,8 +25,8 @@ const LoginForm = (props) => {
             <div>
                 <Field component={Input} name={'rememberMe'} type={'checkbox'} /> HEY IT'S ME
             </div>
-            {props.error && <div className={style.formSummaryError}>
-                {props.error}
+            {error && <div className={style.formSummaryError}>
+                {error}
             </div>}
             <div>
                 <button>LOGIN</button>
